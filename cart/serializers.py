@@ -21,7 +21,6 @@ class DeliveryCostSerializer(serializers.ModelSerializer):
         fields = ['id', 'status', 'cost_per_delivery', 'cost_per_product', 'fixed_cost', 'created_at', 'updated_at']
 
 class UserOrderSerializer(serializers.ModelSerializer):
-    items = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
     class Meta:
         model = UserOrder
         fields = ('__all__')
