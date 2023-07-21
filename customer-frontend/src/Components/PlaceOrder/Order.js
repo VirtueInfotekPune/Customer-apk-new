@@ -30,10 +30,10 @@ const Order = () => {
   const handlePlaceOrder = () => {
     // Save the order details to local storage and display the cart item details in the console
     const orderData = {
-      cartItems: cartItems,
+      items: cartItems,
       totalPrice: totalPrice,
       deliveryAddress: deliveryAddress,
-      paymentMethod: selectedPaymentMethod,
+      // paymentMethod: selectedPaymentMethod,
       // Add other order data as needed
     };
     // console.log(cartItems)

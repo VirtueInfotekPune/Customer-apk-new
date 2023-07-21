@@ -5,6 +5,26 @@ from .models import User, Cart, DeliveryCost, UserOrder
 from .serializers import UserSerializer, CartSerializer, DeliveryCostSerializer, UserOrderSerializer
 from .helpers import CartHelper
 from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+
+@api_view(['GET', 'POST'])
+def order_list(request):
+    if request.method == 'GET':
+        data = UserOrder.objects.all()
+
+        serializer = UserOrderSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = UserOrderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -38,7 +58,7 @@ class CartViewSet(viewsets.ModelViewSet):
 
 class PlaceOrderViewSet(viewsets.ModelViewSet):
     queryset = UserOrder.objects.all()
-    serializer_class = UserOrderSerializer
+    serializer_class = UserOrderSerializer()
 
     # def placeorder(self, request, format= None):
     #     serializer = CartSerializer(data = request.data)

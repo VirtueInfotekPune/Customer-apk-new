@@ -52,9 +52,10 @@ class DeliveryCost(models.Model):
 
 
 class UserOrder(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    items = models.ManyToManyField(Product)
+    items = models.CharField(max_length=100,null=True)
     ordered_on = models.DateTimeField(auto_now_add=True)
-
+    totalPrice = models.DecimalField(default=0, decimal_places=2, max_digits=6)
+    deliveryAddress = models.CharField(blank=True, null=True, max_length=100)
+    
     def __str__(self):
         return f"{self.id} - {self.user.username}"
