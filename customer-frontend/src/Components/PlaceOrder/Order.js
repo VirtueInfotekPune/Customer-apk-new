@@ -81,6 +81,7 @@ const Order = () => {
           Place Order
         </button>
 
+        {/* <button><Link to="/home" className="c-shop">Continue Shopping</Link></button> */}
         <button><Link to="/home" className="c-shop">Continue Shopping</Link></button>
       </div>
       {cartItems && cartItems.length > 0 && (
@@ -103,3 +104,6 @@ const Order = () => {
 };
 
 export default Order;
+
+
+// **************************************************************
