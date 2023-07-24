@@ -14,8 +14,8 @@ router.register(r'user', views.UserViewSet)
 urlpatterns = [
     path('', include((router.urls, 'B2C_APP.cart'))),
     # path('placeOrder', ),
-    path('cart', CartViewSet),
-    path('delivery-cost', DeliveryCostViewSet),
-    path('user', UserViewSet),
+    # path('cart', CartViewSet),
+    # path('delivery-cost', DeliveryCostViewSet),
+    # path('user', UserViewSet),
     re_path(r'^api/orderlist/$', views.order_list),
 ]
