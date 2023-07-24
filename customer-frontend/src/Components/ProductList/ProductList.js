@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ProductList.css';
 import { useLocation } from 'react-router-dom';
 // import ProductCard from './ProductCard';
+import axios from "axios"
 
 export default function ProductList() {
   const location = useLocation();
@@ -12,25 +13,29 @@ export default function ProductList() {
 
   const getProducts = async () => {
     try {
-      const response = await fetch('https://adminpr.onrender.com/api/product/', {
+      const response = await fetch(`https://adminpr.onrender.com/api/product/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
       });
       const json = await response.json();
-      const filteredProducts = json.filter(
-        (item) => item.category === obj.category && item.subcategory === obj.subcategory
-      );
-      setProducts(filteredProducts);
+      // const filteredProducts = json.filter(
+      //   (item) => item.category === obj.category && item.subcategory === obj.subcategory
+      // );
+      // setProducts(filteredProducts);
+      setProducts(json)
     } catch (error) {
       console.log(error);
     }
   };
-
+  
   useEffect(() => {
     getProducts();
   }, []);
+  
+  console.log(products)
+    
 
   const tempobj = {
     image: 'https://via.placeholder.com/150x150',
@@ -45,7 +50,7 @@ export default function ProductList() {
       <div className="subcategory-row">
         {products.map((item) => (
           <ProductCard key={item.id} obj={item} />
-        ))}
+          ))}
         <ProductCard obj={tempobj} />
         <ProductCard obj={tempobj} />
         <ProductCard obj={tempobj} />
@@ -91,6 +96,7 @@ function ProductCard({ obj }) {
     <div className="product-card">
       <div className="product-image">
         <img src={obj.image} alt={obj.productname} />
+       
       </div>
       <p>{obj.id}</p>
       <p className="product-weight">brand: {obj.brand}</p>
