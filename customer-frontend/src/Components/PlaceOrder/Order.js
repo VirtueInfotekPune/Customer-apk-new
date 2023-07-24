@@ -10,7 +10,8 @@ const Order = () => {
 
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('Cash on delivery');
-
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  
   const isPlaceOrderDisabled = totalPrice === 0;
 
   useEffect(() => {
@@ -26,12 +27,21 @@ const Order = () => {
   };
 
   const handlePlaceOrder = async () => {
+
     const itemsString = cartItems.map(item => `[${item.productname}-${item.quantity}-${item.productprice}]`).join(',');
-    
+    // console.log(itemsString)
     const formData = new FormData();
-    formData.append("items", itemsString);
-    // formData.append("price", totalPrice);
-    // formData.append("address", deliveryAddress);
+    formData.append("items", JSON.stringify(itemsString));
+    formData.append("totalPrice", totalPrice);
+    formData.append("deliveryAddress", deliveryAddress);
+
+   
+
+    setOrderPlaced(true)
+    setTimeout(() => {
+
+      setOrderPlaced(false)
+    },1500)
   
     console.log(formData);
   
@@ -75,6 +85,13 @@ const Order = () => {
           <Link to="/home" className="c-shop">Continue Shopping</Link>
         </button>
       </div>
+
+      {orderPlaced && (
+        <div className="cart-message">
+          <p>Your order is Placed!</p>
+        </div>
+      )}
+      
       {cartItems && cartItems.length > 0 && (
         <div className="order-details">
           {/* <ul>
@@ -93,3 +110,10 @@ const Order = () => {
 };
 
 export default Order;
+
+
+
+
+
+
+
