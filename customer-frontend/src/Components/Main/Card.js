@@ -32,7 +32,7 @@ const Cards = () => {
             className="card"
             style={{ backgroundColor: card.backcolor }}
           >
-            <img src="https://via.placeholder.com/200" alt="card-image" className="card-image" />
+            <img src={card.image} alt="card-image" className="card-image" />
             <div className="card-title">{card.category}</div>
             <p>{card.brand}</p>
             <p>{card.productprice}</p>

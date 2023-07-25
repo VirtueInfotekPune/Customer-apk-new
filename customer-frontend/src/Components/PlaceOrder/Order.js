@@ -6,7 +6,7 @@ import axios from 'axios'; // If you prefer to use axios
 const Order = () => {
   const location = useLocation();
   const { cartItems, totalPrice } = location.state || {};
-  console.log(cartItems)
+  console.log(cartItems);
 
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('Cash on delivery');
@@ -28,14 +28,16 @@ const Order = () => {
 
   const handlePlaceOrder = async () => {
 
-    const itemsString = cartItems.map(item => `[${item.productname}-${item.quantity}-${item.productprice}]`).join(',');
+    // const itemsString = cartItems.map(item => `[${item.productname}-${item.quantity}-${item.productprice}]`).join(',');
     // console.log(itemsString)
     const formData = new FormData();
-    formData.append("items", JSON.stringify(itemsString));
+    // formData.append("items", Json.stringfy(itemsString));
+
+    formData.append("items", cartItems);
     formData.append("totalPrice", totalPrice);
     formData.append("deliveryAddress", deliveryAddress);
-
-   
+    
+    
 
     setOrderPlaced(true)
     setTimeout(() => {
@@ -43,6 +45,7 @@ const Order = () => {
       setOrderPlaced(false)
     },1500)
   
+    console.log("itemsString",cartItems)
     console.log(formData);
   
     try {
