@@ -26,7 +26,7 @@ const Order = () => {
   };
 
   const handlePlaceOrder = async () => {
-    const itemsString = cartItems.map(item => `${item.productname}-${item.quantity}-${item.productprice}`).join(',');
+    const itemsString = cartItems.map(item => `[${item.productname}-${item.quantity}-${item.productprice}]`).join(',');
     
     const formData = new FormData();
     formData.append("items", itemsString);
