@@ -8,6 +8,9 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+import json
+from django.forms import model_to_dict
+
 
 @api_view(['GET', 'POST'])
 def order_list(request):
@@ -73,7 +76,8 @@ class PlaceOrderViewSet(viewsets.ModelViewSet):
 
     def post(self, request, *args, **kwargs):
         user_cart = Cart.objects.filter(user=self.request.user)
-        items = [cart.item for cart in user_cart]
+        retrieved_order = [cart.item for cart in user_cart]
+        items = json.dumps(model_to_dict(retrieved_order), indent=2)
         serializer = UserOrderSerializer(user=self.request.user, items=items)
         if serializer.is_valid():
             serializer.save()
