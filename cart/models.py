@@ -1,5 +1,5 @@
 from django.db import models
-
+import json
 # Create your models here.
 from django.db import models
 from client_app.models import Product
@@ -52,7 +52,7 @@ class DeliveryCost(models.Model):
 
 
 class UserOrder(models.Model):
-    items = models.TextField(max_length=200,null=True)
+    items = models.JSONField(null=True)
     ordered_on = models.DateTimeField(auto_now_add=True)
     totalPrice = models.DecimalField(default=0, decimal_places=2, max_digits=6)
     deliveryAddress = models.CharField(blank=True, null=True, max_length=300)
