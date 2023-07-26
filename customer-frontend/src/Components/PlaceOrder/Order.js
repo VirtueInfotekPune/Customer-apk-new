@@ -45,8 +45,8 @@ const Order = () => {
       setOrderPlaced(false)
     },1500)
   
-    console.log("itemsString",cartItems)
-    console.log(formData);
+    console.log("itemsString",cartItems);
+    console.log("Form data " ,formData);
   
     try {
       const response = await axios.post('http://127.0.0.1:8000/cart/api/orderlist/', formData);
