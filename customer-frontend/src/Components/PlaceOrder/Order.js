@@ -41,6 +41,12 @@ const Order = () => {
       totalPrice,
       deliveryAddress,
     };
+
+    setOrderPlaced(true)
+    setTimeout(() => {
+
+      setOrderPlaced(false)
+    },2000)
   
     try {
       const response = await axios.post('http://127.0.0.1:8000/cart/api/orderlist/', requestBody);
