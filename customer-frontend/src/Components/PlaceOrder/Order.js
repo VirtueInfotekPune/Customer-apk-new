@@ -41,6 +41,7 @@ const Order = () => {
       totalPrice,
       deliveryAddress,
     };
+    
 
     setOrderPlaced(true)
     setTimeout(() => {
@@ -114,9 +115,4 @@ const Order = () => {
 
 export default Order;
 
-
-
-
-
-
-
+// ***********************
