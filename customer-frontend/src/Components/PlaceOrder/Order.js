@@ -33,8 +33,14 @@ const Order = () => {
     const items = cartItems.map(item => ({
       productname: item.productname,
       quantity: item.quantity,
-      productprice: item.productprice.toString(), // Convert to string if needed
+      productprice: item.productprice.toString(),      // Convert to string if needed
+      image: item.image.toString(),
+      offer:item.offer,
+      subcategory:item.subcategory,
+      uom:item.uom
+    
     }));
+    
   
     const requestBody = {
       items, // directly pass items not converted into string
@@ -71,7 +77,7 @@ const Order = () => {
       </div>
       <div className="delivery-address">
         <label className="green-text">Delivery Address:</label>
-        <input type="text" value={deliveryAddress} onChange={handleDeliveryAddressChange} />
+        <input type="text" value={deliveryAddress} onChange={handleDeliveryAddressChange}  required/>
       </div>
       <div className="delivery">
         <span className="green-text">Deliver to:</span>
