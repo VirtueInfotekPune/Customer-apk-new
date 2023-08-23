@@ -167,7 +167,7 @@ notebook_shim==0.2.2
 np==1.0.2
 npm==0.1.1
 ntplib==0.4.0
-numpy==1.21.1
+numpy==1.21.6
 oauthlib==3.1.1
 odict==1.9.0
 opencv-python==4.6.0.66
